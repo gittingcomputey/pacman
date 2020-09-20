@@ -1,0 +1,61 @@
+/* colors
+pac-dot green: #52930b
+wall blue: #2e76cf
+pacman yellow: #fffcbb
+Empty square offwhite: #f3f3f3
+*/
+
+
+.main-container {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 560px;
+  height: 560px;
+  border: solid #40444b;
+}
+
+.grid div {
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+}
+
+.pac-dot {
+  background-color: #52930b;
+  border: solid 5px white;
+}
+
+.wall {
+  background-color: #2e76cf;
+}
+
+.power-up {
+  background-image: radial-gradient(circle, red, #f3f3f3, white);
+  border: 50%;
+}
+
+.black-square {
+  background-color: #000;
+}
+
+.pacman-yellow {
+  background-color: #fffcbb;
+}
+
+.left-eye {
+  background-image: linear-gradient(to right, #000 50%, #fff 50%);
+}
+
+.right-eye {
+  background-image: linear-gradient(to right, #fff 50%, #000 50%);
+}
+
+.empty {
+  background-color: #f3f3f3;
+}
