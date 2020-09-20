@@ -1,8 +1,8 @@
 /* colors
-pac-dot green: #52930b
+pac-dot green: #3d583d
 wall blue: #2e76cf
-pacman yellow: #fffcbb
-Empty square offwhite: #f3f3f3
+penguin yellow: #fffcbb
+ghost-lair offwhite: #f3f3f3
 */
 
 
@@ -10,6 +10,25 @@ Empty square offwhite: #f3f3f3
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.headline {
+  width: 100%;
+  text-align: center;
+  font-family: 'Monofett', cursive;
+  font-size: 3rem;
+  letter-spacing: .6rem;
+  color: #3d583d;
+  opacity: .9;
+  margin: -2rem 0;
+}
+
+.game-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 .grid {
@@ -20,6 +39,13 @@ Empty square offwhite: #f3f3f3
   border: solid #40444b;
 }
 
+.score-h3 {
+  text-align: center;
+  color: #262626;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+}
+
 .grid div {
   width: 20px;
   height: 20px;
@@ -28,11 +54,17 @@ Empty square offwhite: #f3f3f3
 
 .pac-dot {
   background-color: #52930b;
+  opacity: .9;
   border: solid 5px white;
+  border-radius: 50%;
 }
 
 .wall {
   background-color: #2e76cf;
+}
+
+.ghost-lair {
+  background-color: #f3f3f3;
 }
 
 .power-up {
@@ -44,8 +76,8 @@ Empty square offwhite: #f3f3f3
   background-color: #000;
 }
 
-.pacman-yellow {
-  background-color: #fffcbb;
+.penguin-yellow {
+  background-color: gold;
 }
 
 .left-eye {
@@ -56,6 +88,32 @@ Empty square offwhite: #f3f3f3
   background-image: linear-gradient(to right, #fff 50%, #000 50%);
 }
 
-.empty {
-  background-color: #f3f3f3;
+.pac-man {
+  background-color: yellow;
+  border-radius: 10px;
+}
+
+.Blinky {
+  background-image: linear-gradient(to bottom, red 70%,  #f3f3f3 70%);
+  border: 0;
+}
+
+.Pinky {
+  background-image: linear-gradient(to bottom, pink 70%,  #f3f3f3 70%);
+  border: 0;
+}
+
+.Inky {
+  background-image: linear-gradient(to bottom, purple 70%,  #f3f3f3 70%);
+  border: 0;
+}
+
+.Clyde {
+  background-image: linear-gradient(to bottom, orange 70%,  #f3f3f3 70%);
+  border: 0;
+}
+
+.scared-ghost {
+  background-color: silver;
+  border: 0;
 }
