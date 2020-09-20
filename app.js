@@ -125,9 +125,9 @@ function movePacMan(e) {
   squares[pacmanCurrentIndex].classList.add('pac-man');
 
   ateDot();
-  // atePowerUp()
-  // checkForGameOver()
-  // checkForWin()
+  atePowerUp();
+  checkForGameOver();
+  checkForWin();
 }
 document.addEventListener('keyup', movePacMan);
 
@@ -141,6 +141,19 @@ function ateDot() {
   }
 }
 
+function atePowerUp() {
+  if ( squares[pacmanCurrentIndex].classList.contains('power-up') ) {
+    score += 10;
+    ghosts.forEach(ghost => ghostIsScared = true);
+    setTimeout(notScaredAnymore, 12000);
+    squares[pacmanCurrentIndex].classList.remove('power-up');
+  }
+}
+
+function notScaredAnymore() {
+  ghosts.forEach(ghost => ghostIsScared = false);
+}
+
 class Ghost {
   constructor(className, startIndex, speed) {
     this.className = className;
@@ -148,14 +161,15 @@ class Ghost {
     this.speed = speed;
     this.currentIndex = startIndex;
     this.timerID = NaN;
+    this.ghostIsScared = false;
   }
 }
 
 ghosts = [
-  new Ghost('Blinky', 433, 250),
-  new Ghost('Pinky', 403, 400),
-  new Ghost('Inky', 408, 300),
-  new Ghost('Clyde', 434, 500)
+  new Ghost('Blinky', 260, 250),
+  new Ghost('Pinky', 271, 400),
+  new Ghost('Inky', 294, 300),
+  new Ghost('Clyde', 293, 500)
 ]
 
 // Draw the ghosts
@@ -164,7 +178,57 @@ ghosts.forEach(ghost => {
   squares[ghost.currentIndex].classList.add('ghost');
 });
 
-// ghosts.forEach(ghost => moveGhost(ghost));
+ghosts.forEach(ghost => moveGhost(ghost));
 
+function moveGhost(ghost) {
+  const directionChoices = [-1, +1, -width, width];
+  let direction = directionChoices[Math.floor(Math.random() * directionChoices.length)];
+
+  ghost.timerID = setInterval(function() {
+    if ( !squares[ghost.currentIndex + direction].classList.contains('wall')  &&
+         !squares[ghost.currentIndex + direction].classList.contains('ghost') &&
+         !squares[ghost.currentIndex + direction].classList.contains('black-square') &&
+         !squares[ghost.currentIndex + direction].classList.contains('penguin-yellow') &&
+         !squares[ghost.currentIndex + direction].classList.contains('left-eye') &&
+         !squares[ghost.currentIndex + direction].classList.contains('right-eye') ) {
+
+        //ghost movement after checking for walls and other ghosts
+          squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost');
+          ghost.currentIndex += direction;
+          squares[ghost.currentIndex].classList.add(ghost.className, 'ghost');
+    } else {
+      direction =  directionChoices[Math.floor(Math.random() * directionChoices.length)]
+    }
+
+    if (ghostIsScared) {
+        squares[ghost.currentIndex].classList.add('scared-ghost');
+    }
+
+    if (ghostIsScared && squares[ghost.currentIndex].classList.contains('pac-man')) {
+        squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost');
+        ghost.currentIndex = ghost.startIndex;
+        score += 100;
+        squares[ghost.currentIndex].classList.add(ghost.className, 'ghost');
+    }
+      checkForGameOver();
+  }, ghost.speed);
+}
+
+// check for gameover
+function checkForGameOver() {
+  if(squares[pacmanCurrentIndex].classList.contains('ghost') && !squares[pacmanCurrentIndex].classList.contains('scared-ghost')) {
+    ghosts.forEach(ghost => clearInterval(ghost.timerID));
+    document.removeEventListener('keyup', movePacMan);
+    setTimeout(function(){ alert("GAME OVER!") }, 500);
+  }
+}
+
+// check for a win
+function checkForWin() {
+  if (score === 274) {
+  ghosts.forEach(ghost => clearInterval(ghost.timerID));
+  document.removeEventListener('keyup', movePacMan);
+  alert('YOU WIN!');
+}};
 
 });

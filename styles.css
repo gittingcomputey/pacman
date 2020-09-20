@@ -19,8 +19,9 @@ ghost-lair offwhite: #f3f3f3
   text-align: center;
   font-family: 'Monofett', cursive;
   font-size: 3rem;
-  letter-spacing: .6rem;
-  color: #3d583d;
+  letter-spacing: .7rem;
+  color: rgb(29,56,135);
+  text-shadow: .2rem .5rem .5rem grey;
   opacity: .9;
   margin: -2rem 0;
 }
@@ -91,29 +92,37 @@ ghost-lair offwhite: #f3f3f3
 .pac-man {
   background-color: yellow;
   border-radius: 10px;
+  /* clip-path: polygon(100% 74%, 44% 48%, 100% 21%); */
 }
 
 .Blinky {
-  background-image: linear-gradient(to bottom, red 70%,  #f3f3f3 70%);
+  background-image: linear-gradient(to bottom, red 70%,  silver 85%);
   border: 0;
 }
 
 .Pinky {
-  background-image: linear-gradient(to bottom, pink 70%,  #f3f3f3 70%);
+  background-image: linear-gradient(to bottom, pink 70%,  silver 85%);
   border: 0;
 }
 
 .Inky {
-  background-image: linear-gradient(to bottom, purple 70%,  #f3f3f3 70%);
+  background-image: linear-gradient(to bottom, purple 70%,  silver 85%);
   border: 0;
 }
 
 .Clyde {
-  background-image: linear-gradient(to bottom, orange 70%,  #f3f3f3 70%);
+  background-image: linear-gradient(to bottom, orange 70%,  silver 85%);
   border: 0;
 }
 
+.ghost {
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
 .scared-ghost {
-  background-color: silver;
+  background-image: linear-gradient(to bottom, orange 10%,  silver 85%);
   border: 0;
 }
